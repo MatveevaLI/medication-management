@@ -7,12 +7,11 @@ describe('matveeva-medication-list', () => {
       components: [MatveevaMedicationList],
       html: `<matveeva-medication-list></matveeva-medication-list>`,
     });
-    expect(page.root).toEqualHtml(`
-      <matveeva-medication-list>
-        <mock:shadow-root>
-          <slot></slot>
-        </mock:shadow-root>
-      </matveeva-medication-list>
-    `);
+    const medicationList = page.rootInstance as MatveevaMedicationList;
+    // await medicationList.componentWillLoad(); // Make sure the component loads data
+    const expectedMedications = medicationList?.medications?.length;
+
+    const items = page.root.shadowRoot.querySelectorAll("md-list-item");
+    expect(items.length).toEqual(expectedMedications);
   });
 });
