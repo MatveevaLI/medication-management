@@ -7,12 +7,16 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface MatveevaMedicationApp {
+        "ambulanceId": string;
+        "apiBase": string;
         "basePath": string;
     }
     interface MatveevaMedicationEditor {
         "entryId": string;
     }
     interface MatveevaMedicationList {
+        "ambulanceId": string;
+        "apiBase": string;
     }
 }
 export interface MatveevaMedicationEditorCustomEvent<T> extends CustomEvent<T> {
@@ -72,6 +76,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface MatveevaMedicationApp {
+        "ambulanceId"?: string;
+        "apiBase"?: string;
         "basePath"?: string;
     }
     interface MatveevaMedicationEditor {
@@ -79,6 +85,8 @@ declare namespace LocalJSX {
         "onEditor-closed"?: (event: MatveevaMedicationEditorCustomEvent<string>) => void;
     }
     interface MatveevaMedicationList {
+        "ambulanceId"?: string;
+        "apiBase"?: string;
         "onEntry-clicked"?: (event: MatveevaMedicationListCustomEvent<string>) => void;
     }
     interface IntrinsicElements {
