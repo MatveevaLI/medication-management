@@ -6,24 +6,84 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface MatveevaMedicationApp {
+        "basePath": string;
+    }
+    interface MatveevaMedicationEditor {
+        "entryId": string;
+    }
     interface MatveevaMedicationList {
     }
 }
+export interface MatveevaMedicationEditorCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLMatveevaMedicationEditorElement;
+}
+export interface MatveevaMedicationListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLMatveevaMedicationListElement;
+}
 declare global {
+    interface HTMLMatveevaMedicationAppElement extends Components.MatveevaMedicationApp, HTMLStencilElement {
+    }
+    var HTMLMatveevaMedicationAppElement: {
+        prototype: HTMLMatveevaMedicationAppElement;
+        new (): HTMLMatveevaMedicationAppElement;
+    };
+    interface HTMLMatveevaMedicationEditorElementEventMap {
+        "editor-closed": string;
+    }
+    interface HTMLMatveevaMedicationEditorElement extends Components.MatveevaMedicationEditor, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLMatveevaMedicationEditorElementEventMap>(type: K, listener: (this: HTMLMatveevaMedicationEditorElement, ev: MatveevaMedicationEditorCustomEvent<HTMLMatveevaMedicationEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLMatveevaMedicationEditorElementEventMap>(type: K, listener: (this: HTMLMatveevaMedicationEditorElement, ev: MatveevaMedicationEditorCustomEvent<HTMLMatveevaMedicationEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLMatveevaMedicationEditorElement: {
+        prototype: HTMLMatveevaMedicationEditorElement;
+        new (): HTMLMatveevaMedicationEditorElement;
+    };
+    interface HTMLMatveevaMedicationListElementEventMap {
+        "entry-clicked": string;
+    }
     interface HTMLMatveevaMedicationListElement extends Components.MatveevaMedicationList, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLMatveevaMedicationListElementEventMap>(type: K, listener: (this: HTMLMatveevaMedicationListElement, ev: MatveevaMedicationListCustomEvent<HTMLMatveevaMedicationListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLMatveevaMedicationListElementEventMap>(type: K, listener: (this: HTMLMatveevaMedicationListElement, ev: MatveevaMedicationListCustomEvent<HTMLMatveevaMedicationListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLMatveevaMedicationListElement: {
         prototype: HTMLMatveevaMedicationListElement;
         new (): HTMLMatveevaMedicationListElement;
     };
     interface HTMLElementTagNameMap {
+        "matveeva-medication-app": HTMLMatveevaMedicationAppElement;
+        "matveeva-medication-editor": HTMLMatveevaMedicationEditorElement;
         "matveeva-medication-list": HTMLMatveevaMedicationListElement;
     }
 }
 declare namespace LocalJSX {
+    interface MatveevaMedicationApp {
+        "basePath"?: string;
+    }
+    interface MatveevaMedicationEditor {
+        "entryId"?: string;
+        "onEditor-closed"?: (event: MatveevaMedicationEditorCustomEvent<string>) => void;
+    }
     interface MatveevaMedicationList {
+        "onEntry-clicked"?: (event: MatveevaMedicationListCustomEvent<string>) => void;
     }
     interface IntrinsicElements {
+        "matveeva-medication-app": MatveevaMedicationApp;
+        "matveeva-medication-editor": MatveevaMedicationEditor;
         "matveeva-medication-list": MatveevaMedicationList;
     }
 }
@@ -31,6 +91,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "matveeva-medication-app": LocalJSX.MatveevaMedicationApp & JSXBase.HTMLAttributes<HTMLMatveevaMedicationAppElement>;
+            "matveeva-medication-editor": LocalJSX.MatveevaMedicationEditor & JSXBase.HTMLAttributes<HTMLMatveevaMedicationEditorElement>;
             "matveeva-medication-list": LocalJSX.MatveevaMedicationList & JSXBase.HTMLAttributes<HTMLMatveevaMedicationListElement>;
         }
     }
