@@ -56,6 +56,7 @@ export class MatveevaMedicationApp {
         {
           element === "editor"
             ? <matveeva-medication-editor entry-id={entryId}
+              ambulance-id={this.ambulanceId} api-base={this.apiBase}
               onEditor-closed={() => navigate("./list")}></matveeva-medication-editor>
             : <matveeva-medication-list ambulance-id={this.ambulanceId} api-base={this.apiBase}
               onentry-clicked={(ev: CustomEvent<string>) => navigate("./entry/" + ev.detail)} >

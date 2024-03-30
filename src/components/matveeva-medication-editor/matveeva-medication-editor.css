@@ -1,10 +1,22 @@
 :host {
   --medication-editor-gap: var(--wl-gap, 0.5rem);
+  width: 100%;
+  height: 100%;
+}
 
+form{
   display: flex;
   flex-direction: column;
   gap: var(--medication-editor-gap);
   padding: var(--medication-editor-gap);
+}
+
+.error {
+  margin: auto;
+  color: red;
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
 }
 
 .duration-slider {

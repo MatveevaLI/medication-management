@@ -68,6 +68,84 @@ export interface MedicationListEntry {
 export const MedicationListApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Use this method to store new medication into the medication list.
+         * @summary Saves new entry into medication list
+         * @param {string} ambulanceId pass the id of the particular ambulance
+         * @param {MedicationListEntry} medicationListEntry Medication details to add
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createMedicationListEntry: async (ambulanceId: string, medicationListEntry: MedicationListEntry, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'ambulanceId' is not null or undefined
+            assertParamExists('createMedicationListEntry', 'ambulanceId', ambulanceId)
+            // verify required parameter 'medicationListEntry' is not null or undefined
+            assertParamExists('createMedicationListEntry', 'medicationListEntry', medicationListEntry)
+            const localVarPath = `/medication/{ambulanceId}/entries`
+                .replace(`{${"ambulanceId"}}`, encodeURIComponent(String(ambulanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(medicationListEntry, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Use this method to delete the specific medication from the list.
+         * @summary Deletes a specific medication
+         * @param {string} ambulanceId pass the id of the particular ambulance
+         * @param {string} entryId Pass the ID of the specific medication
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteMedicationListEntry: async (ambulanceId: string, entryId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'ambulanceId' is not null or undefined
+            assertParamExists('deleteMedicationListEntry', 'ambulanceId', ambulanceId)
+            // verify required parameter 'entryId' is not null or undefined
+            assertParamExists('deleteMedicationListEntry', 'entryId', entryId)
+            const localVarPath = `/medication-list/{ambulanceId}/entries/{entryId}`
+                .replace(`{${"ambulanceId"}}`, encodeURIComponent(String(ambulanceId)))
+                .replace(`{${"entryId"}}`, encodeURIComponent(String(entryId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * By using ambulanceId you get list of entries in ambulance medication list
          * @summary Provides the ambulance medication list
          * @param {string} ambulanceId pass the id of the particular ambulance
@@ -101,6 +179,88 @@ export const MedicationListApiAxiosParamCreator = function (configuration?: Conf
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * By using ambulanceId and entryId you can details of specific medication.
+         * @summary Provides details about a specific medication
+         * @param {string} ambulanceId pass the id of the particular ambulance
+         * @param {string} entryId pass the id of the particular entry in the medication list
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMedicationListEntry: async (ambulanceId: string, entryId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'ambulanceId' is not null or undefined
+            assertParamExists('getMedicationListEntry', 'ambulanceId', ambulanceId)
+            // verify required parameter 'entryId' is not null or undefined
+            assertParamExists('getMedicationListEntry', 'entryId', entryId)
+            const localVarPath = `/medication-list/{ambulanceId}/entries/{entryId}`
+                .replace(`{${"ambulanceId"}}`, encodeURIComponent(String(ambulanceId)))
+                .replace(`{${"entryId"}}`, encodeURIComponent(String(entryId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Use this method to update content of a specific medication.
+         * @summary Updates specific medication details
+         * @param {string} ambulanceId pass the id of the particular ambulance
+         * @param {string} entryId pass the id of the specific medication
+         * @param {MedicationListEntry} medicationListEntry Medication details to update
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateMedicationListEntry: async (ambulanceId: string, entryId: string, medicationListEntry: MedicationListEntry, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'ambulanceId' is not null or undefined
+            assertParamExists('updateMedicationListEntry', 'ambulanceId', ambulanceId)
+            // verify required parameter 'entryId' is not null or undefined
+            assertParamExists('updateMedicationListEntry', 'entryId', entryId)
+            // verify required parameter 'medicationListEntry' is not null or undefined
+            assertParamExists('updateMedicationListEntry', 'medicationListEntry', medicationListEntry)
+            const localVarPath = `/medication-list/{ambulanceId}/entries/{entryId}`
+                .replace(`{${"ambulanceId"}}`, encodeURIComponent(String(ambulanceId)))
+                .replace(`{${"entryId"}}`, encodeURIComponent(String(entryId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(medicationListEntry, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -112,6 +272,30 @@ export const MedicationListApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = MedicationListApiAxiosParamCreator(configuration)
     return {
         /**
+         * Use this method to store new medication into the medication list.
+         * @summary Saves new entry into medication list
+         * @param {string} ambulanceId pass the id of the particular ambulance
+         * @param {MedicationListEntry} medicationListEntry Medication details to add
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createMedicationListEntry(ambulanceId: string, medicationListEntry: MedicationListEntry, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MedicationListEntry>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createMedicationListEntry(ambulanceId, medicationListEntry, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Use this method to delete the specific medication from the list.
+         * @summary Deletes a specific medication
+         * @param {string} ambulanceId pass the id of the particular ambulance
+         * @param {string} entryId Pass the ID of the specific medication
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteMedicationListEntry(ambulanceId: string, entryId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteMedicationListEntry(ambulanceId, entryId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * By using ambulanceId you get list of entries in ambulance medication list
          * @summary Provides the ambulance medication list
          * @param {string} ambulanceId pass the id of the particular ambulance
@@ -120,6 +304,31 @@ export const MedicationListApiFp = function(configuration?: Configuration) {
          */
         async getMedicationListEntries(ambulanceId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MedicationListEntry>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMedicationListEntries(ambulanceId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * By using ambulanceId and entryId you can details of specific medication.
+         * @summary Provides details about a specific medication
+         * @param {string} ambulanceId pass the id of the particular ambulance
+         * @param {string} entryId pass the id of the particular entry in the medication list
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMedicationListEntry(ambulanceId: string, entryId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MedicationListEntry>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMedicationListEntry(ambulanceId, entryId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Use this method to update content of a specific medication.
+         * @summary Updates specific medication details
+         * @param {string} ambulanceId pass the id of the particular ambulance
+         * @param {string} entryId pass the id of the specific medication
+         * @param {MedicationListEntry} medicationListEntry Medication details to update
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateMedicationListEntry(ambulanceId: string, entryId: string, medicationListEntry: MedicationListEntry, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MedicationListEntry>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateMedicationListEntry(ambulanceId, entryId, medicationListEntry, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -133,6 +342,28 @@ export const MedicationListApiFactory = function (configuration?: Configuration,
     const localVarFp = MedicationListApiFp(configuration)
     return {
         /**
+         * Use this method to store new medication into the medication list.
+         * @summary Saves new entry into medication list
+         * @param {string} ambulanceId pass the id of the particular ambulance
+         * @param {MedicationListEntry} medicationListEntry Medication details to add
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createMedicationListEntry(ambulanceId: string, medicationListEntry: MedicationListEntry, options?: any): AxiosPromise<MedicationListEntry> {
+            return localVarFp.createMedicationListEntry(ambulanceId, medicationListEntry, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Use this method to delete the specific medication from the list.
+         * @summary Deletes a specific medication
+         * @param {string} ambulanceId pass the id of the particular ambulance
+         * @param {string} entryId Pass the ID of the specific medication
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteMedicationListEntry(ambulanceId: string, entryId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.deleteMedicationListEntry(ambulanceId, entryId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * By using ambulanceId you get list of entries in ambulance medication list
          * @summary Provides the ambulance medication list
          * @param {string} ambulanceId pass the id of the particular ambulance
@@ -141,6 +372,29 @@ export const MedicationListApiFactory = function (configuration?: Configuration,
          */
         getMedicationListEntries(ambulanceId: string, options?: any): AxiosPromise<Array<MedicationListEntry>> {
             return localVarFp.getMedicationListEntries(ambulanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * By using ambulanceId and entryId you can details of specific medication.
+         * @summary Provides details about a specific medication
+         * @param {string} ambulanceId pass the id of the particular ambulance
+         * @param {string} entryId pass the id of the particular entry in the medication list
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMedicationListEntry(ambulanceId: string, entryId: string, options?: any): AxiosPromise<MedicationListEntry> {
+            return localVarFp.getMedicationListEntry(ambulanceId, entryId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Use this method to update content of a specific medication.
+         * @summary Updates specific medication details
+         * @param {string} ambulanceId pass the id of the particular ambulance
+         * @param {string} entryId pass the id of the specific medication
+         * @param {MedicationListEntry} medicationListEntry Medication details to update
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateMedicationListEntry(ambulanceId: string, entryId: string, medicationListEntry: MedicationListEntry, options?: any): AxiosPromise<MedicationListEntry> {
+            return localVarFp.updateMedicationListEntry(ambulanceId, entryId, medicationListEntry, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -152,6 +406,28 @@ export const MedicationListApiFactory = function (configuration?: Configuration,
  */
 export interface MedicationListApiInterface {
     /**
+     * Use this method to store new medication into the medication list.
+     * @summary Saves new entry into medication list
+     * @param {string} ambulanceId pass the id of the particular ambulance
+     * @param {MedicationListEntry} medicationListEntry Medication details to add
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MedicationListApiInterface
+     */
+    createMedicationListEntry(ambulanceId: string, medicationListEntry: MedicationListEntry, options?: AxiosRequestConfig): AxiosPromise<MedicationListEntry>;
+
+    /**
+     * Use this method to delete the specific medication from the list.
+     * @summary Deletes a specific medication
+     * @param {string} ambulanceId pass the id of the particular ambulance
+     * @param {string} entryId Pass the ID of the specific medication
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MedicationListApiInterface
+     */
+    deleteMedicationListEntry(ambulanceId: string, entryId: string, options?: AxiosRequestConfig): AxiosPromise<void>;
+
+    /**
      * By using ambulanceId you get list of entries in ambulance medication list
      * @summary Provides the ambulance medication list
      * @param {string} ambulanceId pass the id of the particular ambulance
@@ -160,6 +436,29 @@ export interface MedicationListApiInterface {
      * @memberof MedicationListApiInterface
      */
     getMedicationListEntries(ambulanceId: string, options?: AxiosRequestConfig): AxiosPromise<Array<MedicationListEntry>>;
+
+    /**
+     * By using ambulanceId and entryId you can details of specific medication.
+     * @summary Provides details about a specific medication
+     * @param {string} ambulanceId pass the id of the particular ambulance
+     * @param {string} entryId pass the id of the particular entry in the medication list
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MedicationListApiInterface
+     */
+    getMedicationListEntry(ambulanceId: string, entryId: string, options?: AxiosRequestConfig): AxiosPromise<MedicationListEntry>;
+
+    /**
+     * Use this method to update content of a specific medication.
+     * @summary Updates specific medication details
+     * @param {string} ambulanceId pass the id of the particular ambulance
+     * @param {string} entryId pass the id of the specific medication
+     * @param {MedicationListEntry} medicationListEntry Medication details to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MedicationListApiInterface
+     */
+    updateMedicationListEntry(ambulanceId: string, entryId: string, medicationListEntry: MedicationListEntry, options?: AxiosRequestConfig): AxiosPromise<MedicationListEntry>;
 
 }
 
@@ -171,6 +470,32 @@ export interface MedicationListApiInterface {
  */
 export class MedicationListApi extends BaseAPI implements MedicationListApiInterface {
     /**
+     * Use this method to store new medication into the medication list.
+     * @summary Saves new entry into medication list
+     * @param {string} ambulanceId pass the id of the particular ambulance
+     * @param {MedicationListEntry} medicationListEntry Medication details to add
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MedicationListApi
+     */
+    public createMedicationListEntry(ambulanceId: string, medicationListEntry: MedicationListEntry, options?: AxiosRequestConfig) {
+        return MedicationListApiFp(this.configuration).createMedicationListEntry(ambulanceId, medicationListEntry, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Use this method to delete the specific medication from the list.
+     * @summary Deletes a specific medication
+     * @param {string} ambulanceId pass the id of the particular ambulance
+     * @param {string} entryId Pass the ID of the specific medication
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MedicationListApi
+     */
+    public deleteMedicationListEntry(ambulanceId: string, entryId: string, options?: AxiosRequestConfig) {
+        return MedicationListApiFp(this.configuration).deleteMedicationListEntry(ambulanceId, entryId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * By using ambulanceId you get list of entries in ambulance medication list
      * @summary Provides the ambulance medication list
      * @param {string} ambulanceId pass the id of the particular ambulance
@@ -180,6 +505,33 @@ export class MedicationListApi extends BaseAPI implements MedicationListApiInter
      */
     public getMedicationListEntries(ambulanceId: string, options?: AxiosRequestConfig) {
         return MedicationListApiFp(this.configuration).getMedicationListEntries(ambulanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * By using ambulanceId and entryId you can details of specific medication.
+     * @summary Provides details about a specific medication
+     * @param {string} ambulanceId pass the id of the particular ambulance
+     * @param {string} entryId pass the id of the particular entry in the medication list
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MedicationListApi
+     */
+    public getMedicationListEntry(ambulanceId: string, entryId: string, options?: AxiosRequestConfig) {
+        return MedicationListApiFp(this.configuration).getMedicationListEntry(ambulanceId, entryId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Use this method to update content of a specific medication.
+     * @summary Updates specific medication details
+     * @param {string} ambulanceId pass the id of the particular ambulance
+     * @param {string} entryId pass the id of the specific medication
+     * @param {MedicationListEntry} medicationListEntry Medication details to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MedicationListApi
+     */
+    public updateMedicationListEntry(ambulanceId: string, entryId: string, medicationListEntry: MedicationListEntry, options?: AxiosRequestConfig) {
+        return MedicationListApiFp(this.configuration).updateMedicationListEntry(ambulanceId, entryId, medicationListEntry, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

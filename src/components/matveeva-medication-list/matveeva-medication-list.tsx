@@ -42,20 +42,26 @@ export class MatveevaMedicationList {
           ? <div class="error">{this.errorMessage}</div>
           :
           <md-list>
-            {this.medications.map((medication, index) =>
-              <md-list-item onClick={() => this.entryClicked.emit(index.toString())}>
+            {this.medications.map((medication) =>
+              <md-list-item onClick={() => this.entryClicked.emit(medication.id)}>
                 <div slot="headline">{medication.name}</div>
                 <div slot="supporting-text">
                   {"Dose: " + medication.dosage + "  " + "Frequency: " + medication.frequencyPerDay}
                 </div>
-                {/* <div slot="secondary-text">
-                  {"For: " + medication.forCondition}
-                </div> */}
                 <md-icon slot="start">local_pharmacy</md-icon>
               </md-list-item>
             )}
           </md-list>
         }
+        {/* <md-filled-icon-button class="add-button"
+          onclick={() => this.entryClicked.emit("@new")}>
+          <md-icon>Add</md-icon>
+        </md-filled-icon-button> */}
+        <md-filled-button class="add-button" 
+        onclick={() => this.entryClicked.emit("@new")}>
+          Add New Medication
+        </md-filled-button>
+
       </Host>
     );
   }

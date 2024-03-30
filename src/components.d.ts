@@ -12,6 +12,8 @@ export namespace Components {
         "basePath": string;
     }
     interface MatveevaMedicationEditor {
+        "ambulanceId": string;
+        "apiBase": string;
         "entryId": string;
     }
     interface MatveevaMedicationList {
@@ -81,6 +83,8 @@ declare namespace LocalJSX {
         "basePath"?: string;
     }
     interface MatveevaMedicationEditor {
+        "ambulanceId"?: string;
+        "apiBase"?: string;
         "entryId"?: string;
         "onEditor-closed"?: (event: MatveevaMedicationEditorCustomEvent<string>) => void;
     }
